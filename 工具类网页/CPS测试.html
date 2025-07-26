@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>CPS Tester</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        .cps-tester {
+            text-align: center;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 1em;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #cpsCount {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cps-tester">
+        <h1>注:此网页源码由"天工大模型3.0"生成</h1>
+        <h3>使用方法:</h3>
+        <h4>点击左边按钮开始测试，测量结果=点击按钮到现在的点击次数÷点击按钮到现在的时间</h4>
+        <h4>左边按钮为重置按钮</h4>
+        <p>Your CPS: <span id="cpsCount">0</span></p>
+        <button id="clickButton">Click me!</button>
+        <button id="resetButton">Reset</button>
+    </div>
+    <script>
+        const clickButton = document.getElementById('clickButton');
+        const resetButton = document.getElementById('resetButton');
+        const cpsCount = document.getElementById('cpsCount');
+        let clicks = 0;
+        let startTime;
+
+        // 设置每0.5秒更新一次计数器
+        setInterval(() => {
+            if (startTime) {
+                cpsCount.textContent = Math.round((clicks / ((new Date().getTime() - startTime) / 1000)));
+            }
+        }, 500);
+
+        clickButton.addEventListener('click', () => {
+            clicks++;
+            if (!startTime) {
+                startTime = new Date().getTime();
+            }
+        });
+
+        resetButton.addEventListener('click', () => {
+            clicks = 0;
+            cpsCount.textContent = '0';
+            startTime = undefined;
+        });
+    </script>
+</body>
+</html>
