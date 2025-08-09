@@ -1,0 +1,260 @@
+.<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XiaoQi的仓库</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'SimSun', '宋体', serif;
+        }
+        
+        body {
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+            /* 背景图片设置 */
+            background-image: url('壁纸.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 白色哑光文本框样式 */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* 欢迎标语样式 */
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .welcome-section h1 {
+            font-size: 3.5rem; /* 小初字号 */
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 音乐播放器样式 */
+        .music-player {
+            text-align: center;
+        }
+        
+        .player-title {
+            font-size: 1.5rem; /* 三号字号 */
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #4a69bd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        
+        .control-btn:hover {
+            background: #1e3799;
+            transform: scale(1.1);
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+        
+        .music-info {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .progress-container {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            height: 100%;
+            background: #4a69bd;
+            width: 30%;
+            border-radius: 4px;
+            transition: width 0.1s linear;
+        }
+        
+        /* 内容区样式 */
+        .content-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .content-item {
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .content-item h3 {
+            font-size: 1.5rem; /* 三号字号 */
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* 图片和视频圆角化 */
+        img, video {
+            max-width: 100%;
+            border-radius: 12px;
+            display: block;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 功能区样式 */
+        .action-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .action-btn {
+            background: #4a69bd;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .action-btn:hover {
+            background: #1e3799;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .separator {
+            width: 100%; /* 分割线的宽度为100% */
+            height: 1px; /* 分割线的高度为1像素 */
+            background-color: #ccc; /* 设置分割线的背景颜色为浅灰色 */
+            margin: 20px 0; /* 给分割线上下各添加20像素的外边距 */
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .welcome-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .player-controls {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 20px;">广告</h2>
+            <div class="content-section">
+                <div class="content-section">
+                    <h3>放心电竞 指定打手：凯月1</h3>
+                    <img src="index素材/广告凯月1.jpg" alt="凯月1">
+                    <p>技术一流，推荐用小黑屋号点单护指定</p>
+                    <p>下单方式：微信公众号"放心电竞护航" 客服指定"凯月1"</p>
+                </div>
+            </div>
+        </div>
+                
+        
+        <!-- 功能区 -->
+        <div class="card">
+            <h2 style="text-align: center; margin-bottom: 20px;">资源</h2>
+            <div class="action-section">
+                <!--
+                <button class="action-btn" onclick="window.open('index2.html', '_blank')">
+                    <i></i>之前的主页
+                -->
+                </button>
+                <button class="action-btn" onclick="window.open('https://lsr-dvq.pages.dev/', '_blank')">
+                    <i></i>刘少网
+                </button>
+                <button class="action-btn" onclick="window.open('https://gzh-web.pages.dev/', '_blank')">
+                    <i></i>龚正浩暗区扶贫
+                </button>
+                <button class="action-btn" onclick="window.open('https://speedgpu.pages.dev/', '_blank')">
+                    <i></i>GPU性能测试
+                </button>
+            
+            </div>
+        </div>
+    </div>
+</body>
+</html>
