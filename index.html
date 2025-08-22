@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XiaoQi的仓库</title>
+    <title>XiaoQi的仓库 - 视频背景版</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
@@ -16,20 +16,23 @@
         body {
             min-height: 100vh;
             padding: 20px;
-            color: #fff; /* 所有字体默认为白色 */
+            color: #fff;
             position: relative;
             overflow-x: hidden;
+            /* 备用背景渐变 */
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
         }
         
         /* 视频背景容器 */
         #video-background {
             position: fixed;
-            top: 0;
-            left: 0;
+            top: 50%;
+            left: 50%;
             min-width: 100%;
             min-height: 100%;
             width: auto;
             height: auto;
+            transform: translateX(-50%) translateY(-50%);
             z-index: -1;
             object-fit: cover;
         }
@@ -50,7 +53,7 @@
             margin-bottom: 30px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #fff; /* 卡片内文字为白色 */
+            color: #fff;
         }
         
         .card:hover {
@@ -152,8 +155,8 @@
         .content-item {
             padding: 20px;
             border-radius: 15px;
-            background: rgba(0, 0, 0, 0.3); /* 调整为深色半透明背景 */
-            color: #fff; /* 白色文字 */
+            background: rgba(0, 0, 0, 0.3);
+            color: #fff;
         }
         
         .content-item h3 {
@@ -224,6 +227,49 @@
             transform: scale(1.1);
         }
         
+        /* 视频加载状态提示 */
+        .video-loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 99;
+            color: white;
+            font-size: 1.5rem;
+        }
+        
+        .video-error {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 99;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .video-error button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #4a69bd;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
         /* 页脚样式 */
         footer {
             text-align: center;
@@ -257,21 +303,31 @@
             #video-background {
                 display: none;
             }
-            
-            body {
-                background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
-            }
         }
     </style>
 </head>
 <body>
+    <!-- 视频加载状态提示 -->
+    <div class="video-loading" id="video-loading">
+        <div>视频加载中...</div>
+    </div>
+    
     <!-- 视频背景 -->
-    <video id="video-background" autoplay loop muted playsinline>
-        <source src="/壁纸/蔚蓝档案临战星野8K.mp4" type="video/mp4">
-        <!-- 备用视频源 -->
-        <source src="/壁纸/蔚蓝档案临战星野8K.mp4" type="video/webm">
+    <video id="video-background" autoplay loop muted playsinline oncanplay="hideLoading()" onerror="showError()">
+        <!-- 这里替换为您的本地视频路径 -->
+        <source src="壁纸/蔚蓝档案临战星野8K.mp4" type="video/mp4">
+        <!-- 添加其他格式的备用源以提高兼容性 -->
+        <source src="壁纸/蔚蓝档案临战星野8K.mp4" type="video/mp4">
         您的浏览器不支持视频标签。
     </video>
+    
+    <!-- 视频加载错误提示 -->
+    <div class="video-error" id="video-error" style="display: none;">
+        <h3>视频加载失败</h3>
+        <p>请检查视频文件路径是否正确，或者尝试使用其他浏览器</p>
+        <button onclick="retryVideo()">重试</button>
+        <button onclick="useFallback()">使用备用背景</button>
+    </div>
     
     <!-- 音频控制按钮 -->
     <div class="audio-control" id="audio-control">
@@ -369,6 +425,50 @@
     </div>
 
     <script>
+        // 视频背景处理
+        const videoBackground = document.getElementById('video-background');
+        const videoLoading = document.getElementById('video-loading');
+        const videoError = document.getElementById('video-error');
+        const audioControl = document.getElementById('audio-control');
+        
+        // 隐藏加载提示
+        function hideLoading() {
+            videoLoading.style.display = 'none';
+        }
+        
+        // 显示错误提示
+        function showError() {
+            videoLoading.style.display = 'none';
+            videoError.style.display = 'flex';
+        }
+        
+        // 重试加载视频
+        function retryVideo() {
+            videoError.style.display = 'none';
+            videoLoading.style.display = 'flex';
+            // 重新加载视频
+            videoBackground.load();
+        }
+        
+        // 使用备用背景
+        function useFallback() {
+            videoError.style.display = 'none';
+            videoBackground.style.display = 'none';
+            // 确保渐变背景显示
+            document.body.style.background = 'linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d)';
+        }
+        
+        // 音频控制
+        audioControl.addEventListener('click', function() {
+            if (videoBackground.muted) {
+                videoBackground.muted = false;
+                audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
+            } else {
+                videoBackground.muted = true;
+                audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
+            }
+        });
+        
         // 音乐播放器功能
         const playBtn = document.getElementById('play-btn');
         const prevBtn = document.getElementById('prev-btn');
@@ -376,7 +476,7 @@
         const progressBar = document.querySelector('.progress-bar');
         const musicInfo = document.querySelector('.music-info');
         
-        // 模拟音乐列表（用户可替换为实际音乐文件）
+        // 模拟音乐列表
         const musicList = [
             "开发中.mp3",
             "开发中.mp3",
@@ -396,7 +496,6 @@
             playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
             
             if (isPlaying) {
-                // 模拟播放进度
                 simulatePlayback();
             }
         });
@@ -437,7 +536,6 @@
                 
                 if (progress >= 100) {
                     clearInterval(interval);
-                    // 自动播放下一首
                     setTimeout(() => {
                         currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
                         updateMusicInfo();
@@ -448,22 +546,15 @@
             }, 100);
         }
         
-        // 视频背景音频控制
-        const videoBackground = document.getElementById('video-background');
-        const audioControl = document.getElementById('audio-control');
-        
-        audioControl.addEventListener('click', function() {
-            if (videoBackground.muted) {
-                videoBackground.muted = false;
-                audioControl.innerHTML = '<i class="fas fa-volume-up"></i>';
-            } else {
-                videoBackground.muted = true;
-                audioControl.innerHTML = '<i class="fas fa-volume-mute"></i>';
-            }
-        });
-        
         // 初始化
         updateMusicInfo();
+        
+        // 设置超时，如果视频长时间未加载完成
+        setTimeout(() => {
+            if (videoLoading.style.display !== 'none') {
+                showError();
+            }
+        }, 10000); // 10秒后检查
     </script>
 </body>
 </html>
