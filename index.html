@@ -16,7 +16,7 @@
         body {
             min-height: 100vh;
             padding: 20px;
-            color: #fff; /* 字体颜色保留白色 */
+            color: #333;
             /* 背景图片设置 */
             background-image: url('壁纸.jpg');
             background-size: cover;
@@ -33,15 +33,14 @@
         
         /* 白色哑光文本框样式 */
         .card {
-            background: rgba(255, 255, 255, 0.1); /* 内容区域背景 */
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
             border-radius: 15px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             padding: 25px;
             margin-bottom: 30px;
             border: 1px solid rgba(255, 255, 255, 0.3);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            color: #fff; /* 字体颜色保留白色 */
+            transition: transform 0.3 ease, box-shadow 0.3 ease;
         }
         
         .card:hover {
@@ -56,11 +55,11 @@
         }
         
         .welcome-section h1 {
-            font-size: 3.5rem;
+            font-size: 3.5rem; /* 小初字号 */
             font-weight: bold;
             margin-bottom: 20px;
-            color: #fff;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
         }
         
         /* 音乐播放器样式 */
@@ -69,10 +68,10 @@
         }
         
         .player-title {
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* 三号字号 */
             font-weight: bold;
             margin-bottom: 20px;
-            color: #fff;
+            color: #2c3e50;
         }
         
         .player-controls {
@@ -83,7 +82,6 @@
             margin-top: 20px;
         }
         
-        /* 按钮样式保留 */
         .control-btn {
             width: 50px;
             height: 50px;
@@ -96,7 +94,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.3s ease;
+            transition: all 0.3 ease;
         }
         
         .control-btn:hover {
@@ -114,13 +112,12 @@
             margin-top: 15px;
             font-size: 1.2rem;
             font-weight: 500;
-            color: #fff;
         }
         
         .progress-container {
             width: 100%;
             height: 8px;
-            background: rgba(255, 255, 255, 0.3);
+            background: #e0e0e0;
             border-radius: 4px;
             margin-top: 15px;
             overflow: hidden;
@@ -131,7 +128,7 @@
             background: #4a69bd;
             width: 30%;
             border-radius: 4px;
-            transition: width 0.1s linear;
+            transition: width 0.1 linear;
         }
         
         /* 内容区样式 */
@@ -141,18 +138,16 @@
             gap: 25px;
         }
         
-        /* 内容区域背景保留 */
         .content-item {
             padding: 20px;
             border-radius: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            color: #fff;
+            background: rgba(255, 255, 255, 0.9);
         }
         
         .content-item h3 {
-            font-size: 1.5rem;
+            font-size: 1.5rem; /* 三号字号 */
             margin-bottom: 15px;
-            color: #fff;
+            color: #2c3e50;
         }
         
         /* 图片和视频圆角化 */
@@ -164,7 +159,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
         
-        /* 功能区样式 - 按钮样式保留 */
+        /* 功能区样式 */
         .action-section {
             display: flex;
             flex-wrap: wrap;
@@ -180,7 +175,7 @@
             border-radius: 50px;
             font-size: 1.2rem;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3 ease;
             display: flex;
             align-items: center;
             gap: 10px;
@@ -202,10 +197,10 @@
         }
 
         .separator {
-            width: 100%;
-            height: 1px;
-            background-color: rgba(255, 255, 255, 0.3);
-            margin: 20px 0;
+            width: 100%; /* 分割线的宽度为100% */
+            height: 1px; /* 分割线的高度为1像素 */
+            background-color: #ccc; /* 设置分割线的背景颜色为浅灰色 */
+            margin: 20px 0; /* 给分割线上下各添加20像素的外边距 */
         }
         
         /* 响应式设计 */
@@ -254,7 +249,7 @@
 
         <div class="card">
             <div class="content-section">
-                <div class="content-item">
+                <div class="content-section">
                     <h3>我是柚子厨</h3>
                     <p>Ciallo～(∠・ω< )⌒☆</p>
                     <p>Ciallo～(∠・ω< )⌒☆</p>
@@ -264,34 +259,47 @@
                 </div>
             </div>
         </div>
+        <!--
+        <div class="card">
+            <div class="content-section">
+                <div class="content-section">
+                    <h3>祝戎加乐生日快乐！</h3>
+                    <button class="action-btn" onclick="window.open('happy.html', '_blank')">
+                        <i></i>祝福
+                    </button>
+                    <p>有效期至8月13日23:59，请及时接收</p>
+                </div>
+            </div>
+        </div>
+        -->
         
         <!-- 主页内容区域 -->
         <div class="card">
             <h2 style="text-align: center; margin-bottom: 20px;">刷机资源</h2>
             <div class="content-section">
-                <div class="content-item">
+                <div class="content-section">
                     <h3>Xiaomi MIX 2S 刷机包</h3>
                     <p>HyperOS1.0 MIUI12 RisingOS6.3 刷机工具......</p>
                     <p>HyperOS2.0请找洛雪</p>
                     <button class="action-btn" onclick="window.open('https://www.123pan.com/s/RGdqVv-96t0A', '_blank')">
-                        <i class="fas fa-download"></i>123云盘
+                        <i></i>123云盘
                     </button>
                 </div>
             </div>
-            <div class="separator"></div>
+            <h4 class="separator"></h4>
             <div class="content-section">
-                <div class="content-item">
+                <div class="content-section">
                     <h3>千恋万花安卓移植版</h3>
                     <button class="action-btn" onclick="window.open('https://23.gooniuptdown.nuakoo.cn/game/qlwhsjhhblhb.apk', '_blank')">
-                        <i class="fas fa-download"></i>下载
+                        <i></i>下载
                     </button>
                     <p>如果下载速度过慢，请挂梯子</p>
                     <p>如果链接失效了，请联系邮箱noreply@xiaoqicy.top</p>
                 </div>
             </div>
-            <div class="separator"></div>
+            <h4 class="separator"></h4>
             <div class="content-section">
-                <div class="content-item">
+                <div class="content-section">
                     <h3>酷安第三方刷机委提醒您</h3>
                     <p>手机千万台，双清第一步。</p>
                     <p>刷机不规范，机主两行泪。</p>
@@ -301,17 +309,18 @@
         
         <div class="card">
            <div class="content-section">
-                <div class="content-item">
+                <div class="content-section">
                     <h3>这里存放了其他页面</h3>
                     <button class="action-btn" onclick="window.open('attach.html', '_blank')">
-                        <i class="fas fa-external-link-alt"></i>其他资源
+                        <i></i>其他资源
                     </button>
                 </div>
             </div>
         </div>
 
+
         <div class="card">
-            <p style="text-align: center;">© 2025 XiaoQi的仓库 | 用代码创造美好</p>
+            <p style="text-align: center;">© 2025 XiaoQi的仓库 | 用代码创造美好</p2>
         </div>
     </div>
 
@@ -323,7 +332,7 @@
         const progressBar = document.querySelector('.progress-bar');
         const musicInfo = document.querySelector('.music-info');
         
-        // 模拟音乐列表
+        // 模拟音乐列表（用户可替换为实际音乐文件）
         const musicList = [
             "开发中.mp3",
             "开发中.mp3",
@@ -343,6 +352,7 @@
             playBtn.innerHTML = isPlaying ? '<i class="fas fa-pause"></i>' : '<i class="fas fa-play"></i>';
             
             if (isPlaying) {
+                // 模拟播放进度
                 simulatePlayback();
             }
         });
@@ -383,6 +393,7 @@
                 
                 if (progress >= 100) {
                     clearInterval(interval);
+                    // 自动播放下一首
                     setTimeout(() => {
                         currentMusicIndex = (currentMusicIndex + 1) % musicList.length;
                         updateMusicInfo();
