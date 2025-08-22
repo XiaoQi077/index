@@ -16,7 +16,7 @@
         body {
             min-height: 100vh;
             padding: 20px;
-            color: #333;
+            color: #fff; /* 所有字体默认为白色 */
             position: relative;
             overflow-x: hidden;
         }
@@ -32,17 +32,6 @@
             height: auto;
             z-index: -1;
             object-fit: cover;
-        }
-        
-        /* 视频覆盖层，增强文本可读性 */
-        .video-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: -1;
         }
         
         .container {
@@ -61,6 +50,7 @@
             margin-bottom: 30px;
             border: 1px solid rgba(255, 255, 255, 0.3);
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #fff; /* 卡片内文字为白色 */
         }
         
         .card:hover {
@@ -75,7 +65,7 @@
         }
         
         .welcome-section h1 {
-            font-size: 3.5rem; /* 小初字号 */
+            font-size: 3.5rem;
             font-weight: bold;
             margin-bottom: 20px;
             color: #fff;
@@ -88,7 +78,7 @@
         }
         
         .player-title {
-            font-size: 1.5rem; /* 三号字号 */
+            font-size: 1.5rem;
             font-weight: bold;
             margin-bottom: 20px;
             color: #fff;
@@ -162,13 +152,14 @@
         .content-item {
             padding: 20px;
             border-radius: 15px;
-            background: rgba(255, 255, 255, 0.9);
+            background: rgba(0, 0, 0, 0.3); /* 调整为深色半透明背景 */
+            color: #fff; /* 白色文字 */
         }
         
         .content-item h3 {
-            font-size: 1.5rem; /* 三号字号 */
+            font-size: 1.5rem;
             margin-bottom: 15px;
-            color: #2c3e50;
+            color: #fff;
         }
         
         /* 图片和视频圆角化 */
@@ -243,10 +234,10 @@
         }
 
         .separator {
-            width: 100%; /* 分割线的宽度为100% */
-            height: 1px; /* 分割线的高度为1像素 */
-            background-color: rgba(255, 255, 255, 0.3); /* 设置分割线的背景颜色为半透明白色 */
-            margin: 20px 0; /* 给分割线上下各添加20像素的外边距 */
+            width: 100%;
+            height: 1px;
+            background-color: rgba(255, 255, 255, 0.3);
+            margin: 20px 0;
         }
         
         /* 响应式设计 */
@@ -281,7 +272,6 @@
         <source src="https://assets.codepen.io/3364143/smoke.webm" type="video/webm">
         您的浏览器不支持视频标签。
     </video>
-    <div class="video-overlay"></div>
     
     <!-- 音频控制按钮 -->
     <div class="audio-control" id="audio-control">
@@ -292,7 +282,7 @@
         <!-- 欢迎标语区域 -->
         <div class="card welcome-section">
             <h1>欢迎访问本站</h1>
-            <p style="color: #fff;">作者：XiaoQi eMail:noreply@xiaoqicy.top</p>
+            <p>作者：XiaoQi eMail:noreply@xiaoqicy.top</p>
         </div>
         
         <!-- 音乐播放器区域 -->
@@ -317,7 +307,7 @@
 
         <div class="card">
             <div class="content-section">
-                <div class="content-section">
+                <div class="content-item">
                     <h3>我是柚子厨</h3>
                     <p>Ciallo～(∠・ω< )⌒☆</p>
                     <p>Ciallo～(∠・ω< )⌒☆</p>
@@ -332,29 +322,29 @@
         <div class="card">
             <h2 style="text-align: center; margin-bottom: 20px;">刷机资源</h2>
             <div class="content-section">
-                <div class="content-section">
+                <div class="content-item">
                     <h3>Xiaomi MIX 2S 刷机包</h3>
                     <p>HyperOS1.0 MIUI12 RisingOS6.3 刷机工具......</p>
                     <p>HyperOS2.0请找洛雪</p>
                     <button class="action-btn" onclick="window.open('https://www.123pan.com/s/RGdqVv-96t0A', '_blank')">
-                        <i></i>123云盘
+                        <i class="fas fa-download"></i>123云盘
                     </button>
                 </div>
             </div>
-            <h4 class="separator"></h4>
+            <div class="separator"></div>
             <div class="content-section">
-                <div class="content-section">
+                <div class="content-item">
                     <h3>千恋万花安卓移植版</h3>
                     <button class="action-btn" onclick="window.open('https://23.gooniuptdown.nuakoo.cn/game/qlwhsjhhblhb.apk', '_blank')">
-                        <i></i>下载
+                        <i class="fas fa-download"></i>下载
                     </button>
                     <p>如果下载速度过慢，请挂梯子</p>
                     <p>如果链接失效了，请联系邮箱noreply@xiaoqicy.top</p>
                 </div>
             </div>
-            <h4 class="separator"></h4>
+            <div class="separator"></div>
             <div class="content-section">
-                <div class="content-section">
+                <div class="content-item">
                     <h3>酷安第三方刷机委提醒您</h3>
                     <p>手机千万台，双清第一步。</p>
                     <p>刷机不规范，机主两行泪。</p>
@@ -364,17 +354,17 @@
         
         <div class="card">
            <div class="content-section">
-                <div class="content-section">
+                <div class="content-item">
                     <h3>这里存放了其他页面</h3>
                     <button class="action-btn" onclick="window.open('attach.html', '_blank')">
-                        <i></i>其他资源
+                        <i class="fas fa-external-link-alt"></i>其他资源
                     </button>
                 </div>
             </div>
         </div>
 
         <div class="card">
-            <p style="text-align: center; color: #fff;">© 2025 XiaoQi的仓库 | 用代码创造美好</p>
+            <p style="text-align: center;">© 2025 XiaoQi的仓库 | 用代码创造美好</p>
         </div>
     </div>
 
