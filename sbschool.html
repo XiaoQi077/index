@@ -3,180 +3,242 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>页面跳转中...</title>
-    <meta http-equiv="refresh" content="0; url=https://example.com">
+    <title>XiaoQi的仓库</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'SimSun', '宋体', serif;
         }
         
         body {
-            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             padding: 20px;
-            color: white;
+            color: #333;
+            /* 背景图片设置 */
+            background-image: url('/壁纸.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            position: relative;
         }
         
         .container {
-            max-width: 600px;
-            width: 100%;
-            background: rgba(255, 255, 255, 0.15);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* 白色哑光文本框样式 */
+        .card {
+            background: rgba(255, 255, 255, 0.1);
             backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 40px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .container::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-            z-index: -1;
-        }
-        
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-        }
-        
-        .description {
-            font-size: 1.1rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 25px;
             margin-bottom: 30px;
-            line-height: 1.6;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: transform 0.3 ease, box-shadow 0.3 ease;
         }
         
-        .jump-indicator {
-            width: 100px;
-            height: 100px;
-            margin: 0 auto 30px;
-            position: relative;
-            animation: jumpIndicator 2s infinite;
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
         }
         
-        .circle {
-            position: absolute;
+        /* 欢迎标语样式 */
+        .welcome-section {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        .welcome-section h1 {
+            font-size: 3.5rem; /* 小初字号 */
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 音乐播放器样式 */
+        .music-player {
+            text-align: center;
+        }
+        
+        .player-title {
+            font-size: 1.5rem; /* 三号字号 */
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #2c3e50;
+        }
+        
+        .player-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .control-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #4a69bd;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3 ease;
+        }
+        
+        .control-btn:hover {
+            background: #1e3799;
+            transform: scale(1.1);
+        }
+        
+        .play-btn {
+            width: 60px;
+            height: 60px;
+            font-size: 24px;
+        }
+        
+        .music-info {
+            margin-top: 15px;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+        
+        .progress-container {
             width: 100%;
-            height: 100%;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            top: 0;
-            left: 0;
-        }
-        
-        .inner-circle {
-            position: absolute;
-            width: 70%;
-            height: 70%;
-            top: 15%;
-            left: 15%;
-            border: 4px solid rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-        }
-        
-        .arrow {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-size: 40px;
-        }
-        
-        .target-url {
-            background: rgba(255, 255, 255, 0.2);
-            padding: 15px 25px;
-            border-radius: 50px;
-            display: inline-block;
-            margin: 20px 0;
-            font-size: 1rem;
-            max-width: 90%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 4px;
+            margin-top: 15px;
             overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
         }
         
-        .btn {
-            display: inline-block;
-            background: white;
-            color: #2575fc;
-            text-decoration: none;
-            padding: 12px 35px;
+        .progress-bar {
+            height: 100%;
+            background: #4a69bd;
+            width: 30%;
+            border-radius: 4px;
+            transition: width 0.1 linear;
+        }
+        
+        /* 内容区样式 */
+        .content-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .content-item {
+            padding: 20px;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.9);
+        }
+        
+        .content-item h3 {
+            font-size: 1.5rem; /* 三号字号 */
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        /* 图片和视频圆角化 */
+        img, video {
+            max-width: 100%;
+            border-radius: 12px;
+            display: block;
+            margin: 15px 0;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* 功能区样式 */
+        .action-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        
+        .action-btn {
+            background: #4a69bd;
+            color: white;
+            border: none;
+            padding: 15px 30px;
             border-radius: 50px;
-            font-weight: 600;
-            font-size: 1.1rem;
-            margin-top: 10px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3 ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
-        .btn:hover {
+        .action-btn:hover {
+            background: #1e3799;
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         }
         
-        .btn:active {
-            transform: translateY(1px);
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: white;
+            font-size: 1rem;
+            margin-top: 20px;
+        }
+
+        .separator {
+            width: 100%; /* 分割线的宽度为100% */
+            height: 1px; /* 分割线的高度为1像素 */
+            background-color: #ccc; /* 设置分割线的背景颜色为浅灰色 */
+            margin: 20px 0; /* 给分割线上下各添加20像素的外边距 */
         }
         
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-        
-        @keyframes jumpIndicator {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .welcome-section h1 {
+                font-size: 2.5rem;
+            }
+            
+            .content-section {
+                grid-template-columns: 1fr;
+            }
+            
+            .player-controls {
+                gap: 15px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>页面跳转中</h1>
-        <p class="description">您将在0秒内被重定向到目标页面</p>
-        
-        <div class="jump-indicator">
-            <div class="circle"></div>
-            <div class="inner-circle"></div>
-            <div class="arrow">→</div>
-        </div>
-        
-        <div class="target-url" id="targetUrl">https://www.czsyyjsxx.cn/</div>
-        
-        <a href="https://www.czsyyjsxx.cn/" class="btn">立即跳转</a>
-        
-        <p class="footer">如果您的浏览器没有自动跳转，请点击上方按钮</p>
+        <div class="card">
+            <div class="content-section">
+                <div class="content-section">
+                    <h>傻逼学校，死母校长，死母教官
+                    <p>妈的个逼的傻逼学校，玩区别对待，就你玩的最明白。别的先不说，先看看住校的问题，我想走读，有问题吗，还他妈强制住校，你有什么狗屁权力要我们强制住校，学一天累死了，回宿舍还要听教官bb，除了把本就烦躁的心情搞得更加暴躁，还有什么用处。还有那勾8班主任，我走读关你屁事，你按照流程过一下不就行了，问这个问那个，你问你妈呢，我就想不明白了，那些走读生在家能把住校生给卷死，他们在家有的是资源，我们住校生有啥，回宿舍就是两眼望着天花板，然后睡觉，搞得跟看守所一样，就比看守所多了一个双休能回家一样，不对，高二以后就没有双休了，变成单休了，你们他妈还是人。</p>
+                    <p>这个勾八学校除了教学楼还好一点以外，还有啥。那傻逼食堂里面卖的都是啥，吃不死你，接近一大半都是预制菜，可能还说少了，为什么春招非对口放假之后，一号食堂要关闭，有时超市要关闭，请问那两个地方是给非对口和春招开的吗？对口班不是人吗？那勾八超市跟他妈屎一样，里面卖的那个价格是人买的，除了可乐还正常点，那些饮料还正常点，别的有正常的吗，为什么超市里卖的绝大部分不能带进宿舍和教学楼，你们在搞三权分立呢，互不影响，各自执各自法？还有那宿舍为什么24届对口办要从3楼搬到2楼，那是什么狗把理由说我们吵到非对口睡觉了，那请问呢？为什么要把对口班的晚自习时长延后，我们是不要睡觉吗，都他妈困死了第2天上你妈课。非对口晚上还睡觉啊？非对口晚上手机都快玩飞起来都快玩炸了，还睡觉睡你奶噢，2楼宿舍都他妈脏死了，里面都是啥，都包浆了，为什么我们不仅要打扫3楼还要打扫2楼，你们怎么不把22届的拉回来把2楼打扫一遍</p>
+                    <p>还有别宣传你那50%的本科率的，有多少水你们自己知道，踢掉差生去参加对口高考，那肯定能搞这么高啊，有本事带上全校</p>
+                  
+                </div>
+            </div>
+        <div class="card">
+            <div class="content-section">
+                <div class="content-section">
+                    <p>还有那1号楼2楼的宋教官，那死母教官把脏字当标点符号使，你挺会说话啊，怎么，你的上一份工作是在看守所里上班的？妈的看守所也不是你这种管法，你搁那训狗呢，自己一身臭毛病，还来管我们。你干了啥，那一栋楼都知道了，自己砍伤了人，让你哥替你去坐牢，你挺高清啊，把你哥当日本人整，是挺牛逼的，你还当党员，你配吗你，尽早把你的党员注销掉，你他妈不配，就你还当过兵哦，你觉得你还真敢拿枪上前线啊，就凭你哥替你坐牢，就说明你人品极差。</p>
+                    <p>我骂你还得专门给你开一栏骂你，专门给你建一个控件骂你</p>
+                </div>
+           </div>
+       </div>
     </div>
-
-    <script>
-        // 设置目标URL
-        const targetUrl = "https://example.com";
-        
-        // 使用JavaScript作为备用跳转方式
-        window.onload = function() {
-            document.getElementById('targetUrl').textContent = targetUrl;
-            
-            // 尝试立即跳转
-            try {
-                window.location.replace(targetUrl);
-            } catch (e) {
-                console.log("自动跳转失败: ", e);
-            }
-        };
-    </script>
 </body>
 </html>
