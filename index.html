@@ -259,6 +259,24 @@
                 </div>
             </div>
         </div>
+        <!-- 编号跳转功能卡片 -->
+        <div class="card">
+            <h3 style="text-align: center; margin-bottom: 20px;">页面跳转功能</h3>
+            <div class="content-section">
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                    <p>请输入页面编号进行跳转：</p>
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" id="page-number" placeholder="例如: 123456" 
+                               style="flex: 1; padding: 12px 15px; border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); 
+                                      background: rgba(255,255,255,0.8); font-size: 1rem;">
+                        <button class="action-btn" id="jump-btn" style="white-space: nowrap;">
+                            <i class="fas fa-external-link-alt"></i>跳转
+                        </button>
+                    </div>
+                    <p style="font-size: 0.9rem; color: #666;">输入编号后将跳转到: </p>
+                </div>
+            </div>
+        </div>
         <!--
         <div class="card">
             <div class="content-section">
@@ -338,6 +356,23 @@
     </div>
 
     <script>
+        // 编号跳转功能
+        document.getElementById('jump-btn').addEventListener('click', function() {
+            const pageNumber = document.getElementById('page-number').value.trim();
+            if (pageNumber) {
+                window.open(`/pages/${pageNumber}.html`, '_blank');
+            } else {
+                alert('请输入有效的页面编号');
+            }
+        });
+        
+        // 支持按Enter键跳转
+        document.getElementById('page-number').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                document.getElementById('jump-btn').click();
+            }
+        });
+
         // 音乐播放器功能
         const playBtn = document.getElementById('play-btn');
         const prevBtn = document.getElementById('prev-btn');
